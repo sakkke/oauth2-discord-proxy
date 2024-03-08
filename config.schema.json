@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "integer"
+    },
+    "client_secret": {
+      "type": "string"
+    },
+    "oauth2_callback": {
+      "type": "string"
+    },
+    "oauth2_endpoint": {
+      "type": "string"
+    }
+  }
+}
