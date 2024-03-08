@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/sakkke/oauth2-discord-proxy.git"
   },
-  "author": "",
+  "author": "sakkke <w32w64@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sakkke/oauth2-discord-proxy/issues"
