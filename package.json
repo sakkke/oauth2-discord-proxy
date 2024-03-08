@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sakkke/oauth2-discord-proxy/issues"
   },
-  "homepage": "https://github.com/sakkke/oauth2-discord-proxy#readme"
+  "homepage": "https://github.com/sakkke/oauth2-discord-proxy#readme",
+  "volta": {
+    "node": "20.11.1"
+  }
 }
