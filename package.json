@@ -18,5 +18,8 @@
   "homepage": "https://github.com/sakkke/oauth2-discord-proxy#readme",
   "volta": {
     "node": "20.11.1"
+  },
+  "dependencies": {
+    "express": "^4.18.3"
   }
 }
