@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "client_id": {
-      "type": "integer"
+      "type": "string"
     },
     "client_secret": {
       "type": "string"
