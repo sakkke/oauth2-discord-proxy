@@ -33,7 +33,7 @@ function createProxy(config) {
         client_secret,
         grant_type: 'refresh_token',
         redirect_uri: oauth2_callback,
-        refreshToken,
+        refresh_token: refreshToken,
       }),
     })
     const result = await data.json()
