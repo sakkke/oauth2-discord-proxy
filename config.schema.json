@@ -8,6 +8,12 @@
     "client_secret": {
       "type": "string"
     },
+    "discord_guild_id": {
+      "type": "string"
+    },
+    "discord_token": {
+      "type": "string"
+    },
     "oauth2_callback": {
       "type": "string"
     },
