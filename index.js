@@ -1,5 +1,5 @@
-const express = require('express')
-const cookieParser = require('cookie-parser')
+const { Hono } = require('hono')
+const { getCookie, setCookie } = require('hono/cookie')
 const { createBot } = require('./bot')
 
 function createProxy(config) {
@@ -59,24 +59,22 @@ function createProxy(config) {
     return !!member
   }
 
-  const proxy = express.Router()
+  const proxy = new Hono()
 
-  proxy.use(cookieParser())
-  proxy.use(async (req, res, next) => {
+  proxy.use(async (c, next) => {
     const allowPaths = [
       '/login',
       '/oauth2/callback',
     ]
-    if (allowPaths.includes(req.path)) {
-      next()
+    if (allowPaths.includes(c.req.path)) {
+      await next()
       return
     }
 
-    const { access_token, refresh_token } = req.cookies
+    const { access_token, refresh_token } = getCookie(c)
 
     if (typeof access_token === 'undefined') {
-      res.redirect('/login')
-      return
+      return c.redirect('/login')
     }
 
     if (!await userExists(access_token)) {
@@ -89,38 +87,36 @@ function createProxy(config) {
       expires_in: refreshed_expires_in,
       refresh_token: refreshed_refresh_token,
     } = await authorizationRefreshToken(refresh_token)
-    res.cookie('access_token', refreshed_access_token, {
+    setCookie(c, 'access_token', refreshed_access_token, {
       maxAge: refreshed_expires_in,
       httpOnly: true,
     })
-    res.cookie('refresh_token', refreshed_refresh_token, {
+    setCookie(c, 'refresh_token', refreshed_refresh_token, {
       maxAge: refreshed_expires_in,
       httpOnly: true,
     })
 
-    next()
+    await next()
   })
 
-  proxy.get('/login', (req, res) => {
-    res.redirect(oauth2_endpoint)
-  })
+  proxy.get('/login', c => c.redirect(oauth2_endpoint))
 
-  proxy.get('/oauth2/callback', async (req, res) => {
+  proxy.get('/oauth2/callback', async c => {
     const {
       access_token,
       expires_in,
       refresh_token,
-    } = await authorizationCode(req.query.code)
-    res.cookie('access_token', access_token, {
+    } = await authorizationCode(c.req.query('code'))
+    setCookie(c, 'access_token', access_token, {
       maxAge: expires_in,
       httpOnly: true,
     })
-    res.cookie('refresh_token', refresh_token, {
+    setCookie(c, 'refresh_token', refresh_token, {
       maxAge: expires_in,
       httpOnly: true,
     })
 
-    res.redirect('/')
+    return c.redirect('/')
   })
 
   return proxy

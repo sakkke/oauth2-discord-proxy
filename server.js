@@ -1,10 +1,11 @@
-const express = require('express')
+const { serve } = require('@hono/node-server')
+const { Hono } = require('hono')
 const { createBot, createProxy } = require('./index')
 const { client_id, client_secret, discord_guild_id, discord_token, oauth2_callback, oauth2_endpoint, port } = require('./config.json')
 
-const app = express()
+const app = new Hono()
 
-app.use('/', createProxy({
+app.route('/', createProxy({
   bot: createBot(discord_token),
   client_id,
   client_secret,
@@ -13,11 +14,12 @@ app.use('/', createProxy({
   oauth2_endpoint,
 }))
 
-app.get('/', (req, res) => {
-  res.send('ok')
-})
+app.get('/', c => c.text('ok'))
 
-app.listen(port, () => {
-  console.log(`listening at http://localhost:${port}`)
-  console.log(`login: http://localhost:${port}/login`)
+serve({
+  fetch: app.fetch,
+  port,
+}, info => {
+  console.log(`listening at http://localhost:${info.port}`)
+  console.log(`login: http://localhost:${info.port}/login`)
 })
