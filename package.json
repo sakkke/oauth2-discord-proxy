@@ -1,31 +1,28 @@
 {
   "name": "oauth2-discord-proxy",
   "version": "0.3.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "dev": "bun run --hot ./server.js",
-    "test": "exit 0"
-  },
+  "author": "sakkke <w32w64@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sakkke/oauth2-discord-proxy.git"
   },
-  "author": "sakkke <w32w64@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sakkke/oauth2-discord-proxy/issues"
-  },
-  "homepage": "https://github.com/sakkke/oauth2-discord-proxy#readme",
-  "volta": {
-    "node": "20.11.1"
-  },
+  "main": "index.js",
   "dependencies": {
     "discord.js": "^14.14.1",
     "hono": "^4.1.1"
   },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+  "bugs": {
+    "url": "https://github.com/sakkke/oauth2-discord-proxy/issues"
+  },
+  "description": "",
+  "homepage": "https://github.com/sakkke/oauth2-discord-proxy#readme",
+  "license": "MIT",
+  "scripts": {
+    "dev": "bun run --hot ./server.js",
+    "test": "exit 0"
+  },
+  "type": "module",
+  "volta": {
+    "node": "20.11.1"
   }
 }
