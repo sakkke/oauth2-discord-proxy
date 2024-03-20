@@ -1,4 +1,4 @@
-import { serve } from '@hono/node-server'
+import { serve } from 'bun'
 import { Hono } from 'hono'
 import { createBot, createProxy } from './index'
 import { client_id, client_secret, discord_guild_id, discord_token, oauth2_callback, oauth2_endpoint, port } from './config.json'
@@ -19,7 +19,7 @@ app.get('/', c => c.text('ok'))
 serve({
   fetch: app.fetch,
   port,
-}, info => {
-  console.log(`listening at http://localhost:${info.port}`)
-  console.log(`login: http://localhost:${info.port}/login`)
 })
+
+console.log(`listening at http://localhost:${port}`)
+console.log(`login: http://localhost:${port}/login`)

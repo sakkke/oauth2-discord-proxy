@@ -21,7 +21,8 @@ function createProxy(config) {
       }),
     })
     const result = await data.json()
-    return ({ access_token, expires_in, refresh_token } = result)
+    const { access_token, expires_in, refresh_token } = result
+    return { access_token, expires_in, refresh_token }
   }
 
   async function authorizationRefreshToken(refreshToken) {
