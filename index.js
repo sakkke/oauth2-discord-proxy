@@ -61,12 +61,13 @@ function createProxy(config) {
 
   const proxy = new Hono()
 
+  const allowPaths = {
+    '/login': null,
+    '/oauth2/callback': null,
+  }
+  const isPathAllowed = path => path in allowPaths
   proxy.use(async (c, next) => {
-    const allowPaths = [
-      '/login',
-      '/oauth2/callback',
-    ]
-    if (allowPaths.includes(c.req.path)) {
+    if (isPathAllowed(c.req.path)) {
       await next()
       return
     }
