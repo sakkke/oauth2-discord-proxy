@@ -51,10 +51,26 @@ function createProxy(config) {
     return result
   }
 
-  async function userExists(accessToken) {
+  async function userExists(accessToken, refreshToken) {
     const guild = await bot.guilds.fetch(discord_guild_id)
 
-    const { id } = await getUser(accessToken)
+    const { id } = await getUser(accessToken).catch(async e => {
+      const {
+        access_token: refreshed_access_token,
+        expires_in: refreshed_expires_in,
+        refresh_token: refreshed_refresh_token,
+      } = await authorizationRefreshToken(refreshToken)
+      setCookie(c, 'access_token', refreshed_access_token, {
+        maxAge: refreshed_expires_in,
+        httpOnly: true,
+      })
+      setCookie(c, 'refresh_token', refreshed_refresh_token, {
+        maxAge: refreshed_expires_in,
+        httpOnly: true,
+      })
+
+      return await getUser(refreshed_access_token)
+    })
     const member = await guild.members.fetch(id).catch(console.error)
     return !!member
   }
@@ -78,24 +94,10 @@ function createProxy(config) {
       return c.redirect('/login')
     }
 
-    if (!await userExists(access_token)) {
+    if (!await userExists(access_token, refresh_token)) {
       // drop
       return
     }
-
-    const {
-      access_token: refreshed_access_token,
-      expires_in: refreshed_expires_in,
-      refresh_token: refreshed_refresh_token,
-    } = await authorizationRefreshToken(refresh_token)
-    setCookie(c, 'access_token', refreshed_access_token, {
-      maxAge: refreshed_expires_in,
-      httpOnly: true,
-    })
-    setCookie(c, 'refresh_token', refreshed_refresh_token, {
-      maxAge: refreshed_expires_in,
-      httpOnly: true,
-    })
 
     await next()
   })
