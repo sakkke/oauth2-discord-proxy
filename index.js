@@ -1,6 +1,6 @@
-const { Hono } = require('hono')
-const { getCookie, setCookie } = require('hono/cookie')
-const { createBot } = require('./bot')
+import { Hono } from 'hono'
+import { getCookie, setCookie } from 'hono/cookie'
+import { createBot } from './bot'
 
 function createProxy(config) {
   const { bot, client_id, client_secret, discord_guild_id, oauth2_callback, oauth2_endpoint } = config
@@ -136,4 +136,4 @@ function createProxy(config) {
   return proxy
 }
 
-module.exports = { createBot, createProxy }
+export { createBot, createProxy }

@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon ./server.js",
     "test": "exit 0"
