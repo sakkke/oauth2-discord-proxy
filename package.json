@@ -22,7 +22,6 @@
     "node": "20.11.1"
   },
   "dependencies": {
-    "@hono/node-server": "^1.8.2",
     "cookie-parser": "^1.4.6",
     "discord.js": "^14.14.1",
     "hono": "^4.1.1"
