@@ -14,7 +14,7 @@ jobs:
       - run: bun ./src/index.js
       - run: bun test
 
-  publish-bun:
+  publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
