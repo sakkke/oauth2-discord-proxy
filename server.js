@@ -21,5 +21,5 @@ serve({
   port,
 })
 
-console.log(`listening at http://localhost:${port}`)
-console.log(`login: http://localhost:${port}/login`)
+console.log(`listening at http://0.0.0.0:${port}`)
+console.log(`login: http://0.0.0.0:${port}/login`)
