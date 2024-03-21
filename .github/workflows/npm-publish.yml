@@ -22,6 +22,8 @@ jobs:
       - uses: oven-sh/setup-bun@v1
       - run: bun install
       - run: bun ./src/index.js
-      - run: bunx npm publish
+      - run: |
+          echo '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}' >>~/.npmrc
+          bunx npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
