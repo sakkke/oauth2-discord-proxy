@@ -57,6 +57,8 @@ console.log(`listening at http://0.0.0.0:${port}`)
 console.log(`login: http://0.0.0.0:${port}/login`)
 ```
 
+Also, example code is [here](./src/server.js).
+
 ## License
 
 [MIT](./LICENSE)
