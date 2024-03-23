@@ -2,7 +2,7 @@
 
 ## Description
 
-`oauth2-discord-proxy` is a proxy service that uses Discord OAuth 2.0 authentication powered by Bun.
+`oauth2-discord-proxy` is a proxy service that uses Discord OAuth 2.0 authentication powered by [honojs/hono](https://github.com/honojs/hono).
 The motivation for this project is adding Discord authentication to services that do not have authentication functionality.
 
 ## Installation
