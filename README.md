@@ -21,11 +21,12 @@ npm install oauth2-discord-proxy
 
 ## Usage
 
+First, create a new `Hono` instance and add a route with `createProxy()`.
+
 ```js
-import { serve } from 'bun'
 import { Hono } from 'hono'
 import { createBot, createProxy } from 'oauth2-discord-proxy'
-import { client_id, client_secret, discord_guild_id, discord_token, oauth2_callback, oauth2_endpoint, port } from '../config.json'
+import { client_id, client_secret, discord_guild_id, discord_token, oauth2_callback, oauth2_endpoint } from '../config.json'
 
 const app = new Hono()
 
@@ -39,6 +40,13 @@ app.route('/', createProxy({
 }))
 
 app.get('/', c => c.text('ok'))
+```
+
+Finally, serve a application.
+
+```js
+import { serve } from 'bun'
+import { port } from '../config.json'
 
 serve({
   fetch: app.fetch,
