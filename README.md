@@ -7,6 +7,14 @@ The motivation for this project is adding Discord authentication to services tha
 
 ## Installation
 
+### bun
+
+```
+bun install oauth2-discord-proxy
+```
+
+### npm
+
 ```
 npm install oauth2-discord-proxy
 ```
