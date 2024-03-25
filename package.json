@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/sakkke/oauth2-discord-proxy/issues"
   },
-  "description": "",
+  "description": "A proxy service that uses Discord OAuth 2.0 authentication powered by Hono",
   "homepage": "https://github.com/sakkke/oauth2-discord-proxy#readme",
   "license": "MIT",
   "scripts": {
