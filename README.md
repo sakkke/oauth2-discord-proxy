@@ -1,5 +1,7 @@
 # oauth2-discord-proxy
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sakkke/oauth2-discord-proxy/bun.yml)
+
 ## Description
 
 `oauth2-discord-proxy` is a proxy service that uses Discord OAuth 2.0 authentication powered by [honojs/hono](https://github.com/honojs/hono).
